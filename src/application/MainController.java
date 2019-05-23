@@ -4,12 +4,15 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -20,6 +23,8 @@ public class MainController{
 
 	@FXML private MediaView mv;
 	@FXML private Button vid;
+	@FXML Slider volume;
+	
 	
 	private MediaPlayer mp;
 	private Media me;
@@ -46,8 +51,21 @@ public class MainController{
 			
 			width.bind(Bindings.selectDouble(mv.sceneProperty(), "width"));
 			height.bind(Bindings.selectDouble(mv.sceneProperty(), "height"));
+			
+			volume.setValue(mp.getVolume() * 100);
+			volume.valueProperty().addListener(new InvalidationListener() {
+
+				@Override
+				public void invalidated(Observable observable) {
+					// TODO Auto-generated method stub
+					mp.setVolume(volume.getValue() / 100);
+				}
+				
+		    });
+		
 		}
 	}
+	
 
 	public void play(ActionEvent event)
 	{

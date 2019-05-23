@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.media.MediaView?>
@@ -20,6 +21,7 @@
             <Button mnemonicParsing="false" onAction="#start" text="start" />
             <Button mnemonicParsing="false" onAction="#stop" text="stop" />
             <Button fx:id="vid" mnemonicParsing="false" onAction="#UploadVid" text="upload " />
+            <Slider fx:id="volume" />
          </children>
       </HBox>
    </bottom>
